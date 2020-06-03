@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using CoreTestApp.Persistance;
@@ -14,6 +15,11 @@ namespace CoreTestApp.Infrastructure.Repository
         public SqlRepository(CoreTestAppContext context)
         {
             this._context = context;
+        }
+
+        public async ValueTask<IEnumerable<T>> GetAll()
+        {
+            return await this._context.Set<T>().ToListAsync();
         }
 
         public async ValueTask<T> GetByIdAsync(object id)

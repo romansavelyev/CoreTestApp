@@ -6,6 +6,13 @@ using MediatR;
 
 namespace CoreTestApp.Commands.Broadcast.Create
 {
+    public class CreateBroadcastCommand : IRequest<Guid>
+    {
+        public Guid BroadcastTypeId { get; set; }
+
+        public string Title { get; set; }
+    }
+
     public class CreateBroadcastCommandHandler : IRequestHandler<CreateBroadcastCommand, Guid>
     {
         private readonly ISqlRepository<Persistance.Models.Broadcast> _repository;

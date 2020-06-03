@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
 using CoreTestApp.Infrastructure.Repository;
 using CoreTestApp.Queries.Exceptions;
@@ -6,6 +7,11 @@ using MediatR;
 
 namespace CoreTestApp.Queries.Broadcast.Get
 {
+    public class GetBroadcastQuery : IRequest<BroadcastViewModel>
+    {
+        public Guid BroadcastId { get; set; }
+    }
+    
     public class GetBroadcastQueryHandler : IRequestHandler<GetBroadcastQuery, BroadcastViewModel>
     {
         private readonly ISqlRepository<Persistance.Models.Broadcast> _repository;
